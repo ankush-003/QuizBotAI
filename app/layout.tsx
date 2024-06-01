@@ -44,7 +44,7 @@ export default function RootLayout({
             <div className="flex justify-between items-center mb-4">
               <a href="/">
                 <h1 className="scroll-m-20 text-3xl font-extrabold tracking-tight xl:text-4xl dark:text-white">
-                  Learning App
+                  QuizBot 🤖
                 </h1>
               </a>
               <div className="flex items-center space-x-2">
