@@ -45,7 +45,8 @@ export const authConfig: NextAuthConfig = {
             token._id = user._id?.toString()
             token.history = user?.history
             token.numQuizes = user?.numQuizes
-            token.numGames = user?.numGames
+            token.numWins = user?.numWins
+            token.numPractices = user?.numPractices
             token.achievements = user?.achievements
             token.username = user?.username
         }
@@ -57,7 +58,8 @@ export const authConfig: NextAuthConfig = {
             session.user._id = token._id as string | undefined
             session.user.history = token.history as string | undefined
             session.user.numQuizes = token.numQuizes as number | undefined
-            session.user.numGames = token.numGames as number | undefined
+            session.user.numWins = token.numWins as number | undefined
+            session.user.numPractices = token.numPractices as number | undefined
             session.user.achievements = token.achievements as any | undefined
             session.user.username = token.username as string | undefined
         }

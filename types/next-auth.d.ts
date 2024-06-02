@@ -5,7 +5,8 @@ declare module 'next-auth' {
     interface User {
         _id?: string
         numQuizes?: number
-        numGames?: number
+        numWins?: number
+        numPractices?: number
         achievements?: any
         history?: any
         username?: string
@@ -14,7 +15,8 @@ declare module 'next-auth' {
         user: {
             _id?: string
             numQuizes?: number
-            numGames?: number
+            numWins?: number
+            numPractices?: number
             achievements?: any
             history?: any
             username?: string
@@ -26,7 +28,8 @@ declare module 'next-auth/jwt' {
     interface JWT {
         _id?: string
         numQuizes?: number
-        numGames?: number
+        numWins?: number
+        numPractices?: number
         achievements?: any
         history?: any
         username?: string

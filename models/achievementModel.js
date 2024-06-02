@@ -9,6 +9,16 @@ const achievementSchema = new mongoose.Schema({
         type: String,
         required: [true, "Description is required"],
     },
+    threshold: {
+        type: [{
+            numGames: {
+                type: Number,
+            },
+            numWins: {
+                type: Number,
+            },
+        }]
+    }
 });
 
 const Achievement = mongoose.models?.achievements || mongoose.model("achievements", achievementSchema);

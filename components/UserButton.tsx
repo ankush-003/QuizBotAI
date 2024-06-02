@@ -10,6 +10,7 @@ import {
 import { SignIn, SignOut } from "./auth-components";
 import { redirect } from "next/navigation";
 import Link from "next/link";
+import { CircleUser } from 'lucide-react';
 
 export default async function UserButton() {
   const session = await auth();
@@ -22,13 +23,11 @@ export default async function UserButton() {
   return (
     <div className="flex gap-2 items-center">
       <span className="hidden text-sm sm:inline-flex">
-        {session.user?.email}
+        {`Welcome, ${session.user?.username}`}
       </span>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button variant="ghost" className="relative w-8 h-8 rounded-full">
-            <p>{`Welcome, ${session.user?.username}`}</p>
-          </Button>
+            <CircleUser className="relative w-8 h-8 rounded-full" />
         </DropdownMenuTrigger>
         <DropdownMenuContent className="w-56" align="end" forceMount>
           <DropdownMenuLabel className="font-normal">

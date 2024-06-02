@@ -26,6 +26,11 @@ const userSchema = new mongoose.Schema({
         default: 0
     },
 
+    numPractices: {
+        type: Number,
+        default: 0
+    },
+
     achievements: {
         type: [{
             achievement: {
