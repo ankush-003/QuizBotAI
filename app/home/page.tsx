@@ -1,7 +1,18 @@
 import React from 'react'
+import { auth } from '@/auth'
 
-export default function page() {
+export default async function page() {
+  const user = await auth()
+  console.log(user)
   return (
-    <div>page</div>
+    <div>
+      {
+        user ? (
+          <h1>Welcome {user.user.username}</h1>
+        ) : (
+          <h1>Not signed in</h1>
+        )
+      }
+    </div>
   )
 }
