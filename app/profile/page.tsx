@@ -1,5 +1,3 @@
-import * as React from "react";
-
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -11,6 +9,8 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+
+import { useSession } from "next-auth/react"
 import {
   Select,
   SelectContent,
@@ -20,7 +20,7 @@ import {
 } from "@/components/ui/select";
 import { auth } from "@/auth";
 
-export default async function page() {
+export default async function Profile() {
   const session = await auth();
   return (
     <div className="flex justify-center items-center">

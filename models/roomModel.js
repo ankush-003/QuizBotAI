@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { z } from "zod";
 
 const roomSchema = new mongoose.Schema({
     createdBy: {
@@ -15,3 +16,8 @@ const roomSchema = new mongoose.Schema({
 const Room = mongoose.model?.rooms || mongoose.model("rooms", roomSchema);
 
 export default Room;
+
+export const RoomSchema = z.object({
+    createdBy: z.string(),
+    invitedUsers: z.array(z.string()),
+});

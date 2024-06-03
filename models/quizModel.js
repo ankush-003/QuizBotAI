@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { z } from "zod";
 
 const questionSchema = new mongoose.Schema({
     question: {
@@ -59,3 +60,20 @@ const quizSchema = new mongoose.Schema({
 const Quiz = mongoose.model?.Quiz || mongoose.model("Quiz", quizSchema);
 
 export default Quiz;
+
+export const QuizSchema = z.object({
+    questions: z.array(z.object({
+        question: z.string(),
+        answer: z.string(),
+        options: z.array(z.string()),
+    })),
+    currentQuestion: z.number(),
+    numQuestions: z.number(),
+    room: z.string(),
+    createdBy: z.string(),
+    leaderBoard: z.array(z.object({
+        user: z.string(),
+        score: z.number(),
+    })),
+    winner: z.string().nullable(),
+});

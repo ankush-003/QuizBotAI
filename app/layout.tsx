@@ -7,8 +7,10 @@ import Sidebar from "@/components/Sidebar";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { Separator } from "@/components/ui/separator";
 import { Toaster } from "@/components/ui/sonner";
-import AuthProvider from '@/contexts/AuthProvider';
+import AuthProvider from "@/contexts/AuthProvider";
 import UserButton from "@/components/UserButton";
+import QueryProvider from "@/contexts/QueryProvider";
+
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,7 +24,6 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-
   return (
     <html lang="en">
       <body
@@ -53,10 +54,10 @@ export default function RootLayout({
                 </div>
               </div>
               <Separator />
-                <Toaster position="top-center" richColors />
-              <div className="mt-2 p-4">
-                {children}
-              </div>
+              <Toaster position="top-center" richColors />
+              <QueryProvider>
+                <div className="mt-2 p-4">{children}</div>
+              </QueryProvider>
             </div>
           </ThemeProvider>
         </AuthProvider>
