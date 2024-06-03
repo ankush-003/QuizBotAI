@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import { z } from "zod";
 
 const userSchema = new mongoose.Schema({
     username: {
@@ -64,20 +63,20 @@ const User = mongoose.models?.users || mongoose.model("users", userSchema);
 
 export default User;
 
-export const UserSchema = z.object({
-    username: z.string(),
-    email: z.string(),
-    password: z.string(),
-    numQuizes: z.number(),
-    numWins: z.number(),
-    numPractices: z.number(),
-    achievements: z.array(z.object({
-        achievement: z.string(),
-        receivedAt: z.date(),
-    })),
-    history: z.array(z.object({
-        quiz: z.string(),
-        score: z.number(),
-        createdAt: z.date(),
-    }))
-});
+// export const UserSchema = z.object({
+//     username: z.string(),
+//     email: z.string(),
+//     password: z.string(),
+//     numQuizes: z.number(),
+//     numWins: z.number(),
+//     numPractices: z.number(),
+//     achievements: z.array(z.object({
+//         achievement: z.string(),
+//         receivedAt: z.date(),
+//     })),
+//     history: z.array(z.object({
+//         quiz: z.string(),
+//         score: z.number(),
+//         createdAt: z.date(),
+//     }))
+// });

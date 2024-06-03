@@ -11,9 +11,11 @@ import {
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { useSession } from "next-auth/react";
+import { useRouter } from 'next/navigation'
 
 function Practice() {
   const { data: session, update } = useSession();
+  const router = useRouter();
   return (
     <div className="w-full">
       <Card>
@@ -31,15 +33,16 @@ function Practice() {
             action={async (formData: FormData) => {
               const topic = formData.get("topic") as string;
               console.log(`selected topic: ${topic}`);
-              const data = await fetch("/api/quiz/practice", {
+              const data: any = await fetch("/api/quiz/practice", {
                 method: "POST",
-                body: JSON.stringify({ topic }),
+                body: JSON.stringify({ topic: topic }),
                 headers: {
                   "Content-Type": "application/json",
                 },
               });
-              const questions = await data.json();
-              
+              const quizId = await data.json();
+              console.log(`quizId: ${quizId}`);
+              router.push(`/practice/${quizId}`);
             }}
           >
             <div className="flex w-full w-lg items-center space-x-2">

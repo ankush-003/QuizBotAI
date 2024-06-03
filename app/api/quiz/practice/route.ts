@@ -7,7 +7,7 @@ import quizes from "@/models/quizModel";
 
 export async function POST(req: NextRequest) {
   const session = await auth();
-  const { topic } = req.json();
+  const { topic } = await req.json();
   try {
     console.log("creating practice quiz");
     await dbConnect();
@@ -33,7 +33,7 @@ export async function POST(req: NextRequest) {
       }
     );
     console.log(questions);
-
+    console.log(prompt); 
     const quiz = await quizes.create({
         questions: questions,
         topic: quizTopic,
@@ -43,7 +43,6 @@ export async function POST(req: NextRequest) {
     });
 
     return NextResponse.json(quiz._id, { status: 200 });
-    // return NextResponse.redirect(new URL("/practice/1", req.url));
     // redirect("/practice");
     // return res._id;
   } catch (error: any) {
