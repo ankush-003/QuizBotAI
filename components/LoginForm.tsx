@@ -17,7 +17,7 @@ import credentialsLogin from "@/actions/credentialsLogin";
 import { useRouter } from "next/navigation";
 
 export default function LoginForm() {
-    const router = useRouter();
+  const router = useRouter();
   return (
     <form
       action={async (formData) => {
@@ -29,13 +29,14 @@ export default function LoginForm() {
         const toastId = toast.loading("Signing in...");
 
         const error = await credentialsLogin(email, password);
-        if (!error) {
-            toast.success("Signed in successfully", { id: toastId });
-            router.push("/home");
-        }
-        else {
-            toast.success("Signed in successfully", { id: toastId });
-        }
+        // if (error === "Invalid email or password") {
+        //   toast.error("Invalid email or password", { id: toastId });
+        // } else {
+        //   toast.success("Signed in successfully", { id: toastId });
+        //   router.push("/home");
+        // }
+        toast.info("Please wait...", { id: toastId });
+        router.push("/home");
       }}
       className="flex justify-center items-center mt-12"
     >

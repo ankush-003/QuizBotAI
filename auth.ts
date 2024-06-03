@@ -3,7 +3,6 @@ import { NextAuthConfig } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import User from "@/models/userModel";
 import { compare } from "bcryptjs";
-// import clientPromise from "@/lib/db";
 import dbConnect from "@/lib/dbConnect";
 
 export const authConfig: NextAuthConfig = {
@@ -40,7 +39,7 @@ export const authConfig: NextAuthConfig = {
   ],
   callbacks: {
     async jwt({ token, user }) {
-      console.log("jwt callback");
+      // console.log("jwt callback");
         if (user) {
             token._id = user._id?.toString()
             token.history = user?.history
@@ -53,7 +52,7 @@ export const authConfig: NextAuthConfig = {
         return token
     },
     async session({ session, token }) {
-        console.log("session callback");
+        // console.log("session callback");
         if (token) {
             session.user._id = token._id as string | undefined
             session.user.history = token.history as string | undefined

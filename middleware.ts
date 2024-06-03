@@ -28,7 +28,10 @@ export const config = {
         // '/sign-up',
         '/home',
         '/quiz',
+        '/quiz/:path*',
         '/profile',
         '/history',
+        '/practice',
+        '/practice/:path*',
     ]
 }

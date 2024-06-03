@@ -10,12 +10,12 @@ import { Toaster } from "@/components/ui/sonner";
 import AuthProvider from "@/contexts/AuthProvider";
 import UserButton from "@/components/UserButton";
 import QueryProvider from "@/contexts/QueryProvider";
-
+import { Bot } from 'lucide-react';
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "QuizBot 🤖",
+  title: "QuizBot",
   description: "A learning app",
 };
 
@@ -44,9 +44,12 @@ export default function RootLayout({
             <div className="p-8 w-full bg-background text-foreground">
               <div className="flex justify-between items-center mb-4">
                 <a href="/">
-                  <h1 className="scroll-m-20 text-3xl font-extrabold tracking-tight xl:text-4xl dark:text-white">
-                    QuizBot 🤖
-                  </h1>
+                  <div className="flex items-center justify-center gap-4">
+                    <h1 className="scroll-m-20 text-2xl font-extrabold tracking-tight lg:text-4xl">
+                      QuizBot
+                    </h1>
+                    <Bot size={48} />
+                  </div>
                 </a>
                 <div className="flex items-center space-x-2">
                   <UserButton />

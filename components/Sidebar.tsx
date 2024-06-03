@@ -9,7 +9,8 @@ import {
     ChevronLeft,
     CircleHelp,
     History,
-    User
+    User,
+    Brain 
   } from "lucide-react"
 import { Nav } from '@/components/Nav'
 import { Button } from '@/components/ui/button'
@@ -48,6 +49,12 @@ export default function Sidebar() {
                 icon: CircleHelp,
                 variant: "default",
                 href: "/quiz",
+              },
+              {
+                title: "practice",
+                icon: Brain,
+                variant: "default",
+                href: "/practice",
               },
               {
                 title: "profile",

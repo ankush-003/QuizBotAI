@@ -5,7 +5,7 @@ import { useSession } from "next-auth/react";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useQuery } from "@tanstack/react-query";
-import { Progress } from "@/components/ui/progress"
+import { Progress } from "@/components/ui/progress";
 import {
   Card,
   CardContent,
@@ -63,7 +63,7 @@ export default function Home() {
     } else {
       return 0;
     }
-  }
+  };
 
   return (
     <div className="w-full mx-auto">
@@ -83,7 +83,7 @@ export default function Home() {
               </div>
               <div className="bg-gray-100 dark:bg-gray-700 rounded-lg p-4 text-center">
                 <h3 className="text-4xl font-bold mb-2">{Params.numWins}</h3>
-                <p className="text-gray-500 dark:text-gray-400">Wins</p>
+                <p className="text-gray-500 dark:text-gray-400">Quizzes Won</p>
               </div>
               <div className="bg-gray-100 dark:bg-gray-700 rounded-lg p-4 text-center">
                 <h3 className="text-4xl font-bold mb-2">
@@ -98,7 +98,7 @@ export default function Home() {
         </Card>
       </div>
       <div className="mt-6">
-        <Tabs defaultValue="account" className="w-full">
+        <Tabs defaultValue="allAchievements" className="w-full">
           <TabsList>
             <TabsTrigger value="allAchievements">All Achievements</TabsTrigger>
             <TabsTrigger value="myAchievements">My Achievements</TabsTrigger>
@@ -119,51 +119,39 @@ export default function Home() {
                     <p className="text-gray-500 dark:text-gray-400 h-[30px]">
                       {achievement.description}
                     </p>
-                      <Progress value={
+                    <Progress
+                      value={
                         // check if achievement.threshold has numQuizs, numWins, or numPractices key
                         // if it does, then check if the value is greater than or equal to the threshold
                         checkThreshold(achievement.threshold, Params)
-                      } />
+                      }
+                    />
                   </div>
                 ))}
               </div>
             )}
-            {/* <div className="bg-gray-100 dark:bg-gray-700 rounded-lg p-4">
-              <div className="flex items-center justify-between mb-2">
-                <h3 className="text-lg font-bold">Quiz Champ</h3>
-                <div className="text-gray-500 dark:text-gray-400">20/50</div>
-              </div>
-              <p className="text-gray-500 dark:text-gray-400 mb-4">Complete 50 quizzes.</p>
-              <div className="w-full bg-gray-300 dark:bg-gray-600 rounded-full h-2.5">
-                <div className="bg-primary rounded-full h-2.5" style={{ width: "40%" }} />
-              </div>
-            </div> */}
           </TabsContent>
           <TabsContent value="myAchievements">
-            {
-              isPendingMyAchievements ? (
-                <div>Loading...</div>
-              ) : (
-                <div className="grid lg:grid-cols-3  gap-4">
-                  {myAchievements?.map((achievement: any) => (
-                    <div
-                      key={achievement.achievement._id}
-                      className="bg-gray-100 dark:bg-gray-700 rounded-lg p-4 text-center flex flex-col items-center gap-3"
-                    >
-                      <h3 className="text-4xl font-bold mb-2">
-                        {achievement.achievement.name}
-                      </h3>
-                      <p className="text-gray-500 dark:text-gray-400 h-[30px]">
-                        {achievement.achievement.description}
-                      </p>
-                      <Button>
-                        {achievement.receivedAt}
-                      </Button>
-                    </div>
-                  ))}
-                </div>
-              )
-            }
+            {isPendingMyAchievements ? (
+              <div>Loading...</div>
+            ) : (
+              <div className="grid lg:grid-cols-3  gap-4">
+                {myAchievements?.map((achievement: any) => (
+                  <div
+                    key={achievement.achievement._id}
+                    className="bg-gray-100 dark:bg-gray-700 rounded-lg p-4 text-center flex flex-col items-center gap-3"
+                  >
+                    <h3 className="text-4xl font-bold mb-2">
+                      {achievement.achievement.name}
+                    </h3>
+                    <p className="text-gray-500 dark:text-gray-400 h-[30px]">
+                      {achievement.achievement.description}
+                    </p>
+                    <Button>{achievement.receivedAt}</Button>
+                  </div>
+                ))}
+              </div>
+            )}
           </TabsContent>
         </Tabs>
       </div>

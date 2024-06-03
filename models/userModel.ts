@@ -48,7 +48,7 @@ const userSchema = new mongoose.Schema({
         type: [{
             quiz: {
                 type: mongoose.Schema.Types.ObjectId,
-                ref: "Quiz",
+                ref: "quizes",
             },
             score: {
                 type: Number,

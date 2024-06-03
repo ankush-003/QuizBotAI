@@ -11,9 +11,10 @@ const credentialsLogin = async (email: string, password: string) => {
       redirectTo: "/home",
     });
     redirect("/home");
+    return res;
   } catch (error: any) {
     const err = error as CredentialsSignin;
-    return err.message;
+    return "Invalid email or password"
   }
 };
 
