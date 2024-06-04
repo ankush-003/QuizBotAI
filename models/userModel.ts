@@ -72,6 +72,12 @@ const userSchema = new mongoose.Schema({
                 type: Boolean,
                 default: false,
             },
+            chaptersRead: {
+                type: [{
+                    type: mongoose.Schema.Types.ObjectId,
+                }],
+                default: [],
+            },
             numChaptersRead: {
                 type: Number,
                 default: 0,
