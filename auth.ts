@@ -84,3 +84,10 @@ export const authConfig: NextAuthConfig = {
 };
 
 export const { auth, handlers, signIn, signOut } = NextAuth(authConfig);
+
+export const config = {
+  unstable_allowDynamic: [
+      'mongoose/dist/browser.umd.js',
+      'mongoose/**',
+  ]
+}

@@ -35,5 +35,9 @@ export const config = {
         '/practice/:path*',
         '/library/:path*',
         '/library',
+    ],
+    unstable_allowDynamic: [
+        'mongoose/dist/browser.umd.js',
+        'mongoose/**',
     ]
 }

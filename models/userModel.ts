@@ -112,3 +112,10 @@ export default User;
 //         createdAt: z.date(),
 //     }))
 // });
+
+export const config = {
+    unstable_allowDynamic: [
+        'mongoose/dist/browser.umd.js',
+        'mongoose/**',
+    ]
+}
