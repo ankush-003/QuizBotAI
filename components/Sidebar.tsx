@@ -10,7 +10,8 @@ import {
     CircleHelp,
     History,
     User,
-    Brain 
+    Brain,
+    SquareLibrary,
   } from "lucide-react"
 import { Nav } from '@/components/Nav'
 import { Button } from '@/components/ui/button'
@@ -43,6 +44,12 @@ export default function Sidebar() {
                 icon: Home,
                 variant: "default",
                 href: "/home",
+              },
+              {
+                title: "library",
+                icon: SquareLibrary,
+                variant: "default",
+                href: "/library",
               },
               {
                 title: "quiz",

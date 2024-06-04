@@ -33,5 +33,7 @@ export const config = {
         '/history',
         '/practice',
         '/practice/:path*',
+        '/library/:path*',
+        '/library',
     ]
 }

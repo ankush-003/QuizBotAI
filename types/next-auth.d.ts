@@ -7,8 +7,9 @@ declare module 'next-auth' {
         numQuizes?: number
         numWins?: number
         numPractices?: number
-        achievements?: any
-        history?: any
+        achievements?: any[]
+        quizHistory?: any[]
+        readingHistory?: any[]
         username?: string
     }
     interface Session {
@@ -18,7 +19,8 @@ declare module 'next-auth' {
             numWins?: number
             numPractices?: number
             achievements?: any
-            history?: any
+            quizHistory?: any[]
+            readingHistory?: any[]
             username?: string
         } & DefaultSession['user']
     }
@@ -31,7 +33,8 @@ declare module 'next-auth/jwt' {
         numWins?: number
         numPractices?: number
         achievements?: any
-        history?: any
+        quizHistory?: any[]
+        readingHistory?: any[]
         username?: string
     }
 }

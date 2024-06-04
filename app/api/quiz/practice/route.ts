@@ -1,7 +1,7 @@
 import { auth } from "@/auth";
 import dbConnect from "@/lib/dbConnect";
 import { redirect } from "next/navigation";
-import { structuredLlm } from "@/lib/llm";
+import { generateQuestionnaire } from "@/lib/llm";
 import { NextRequest, NextResponse } from "next/server";
 import quizes from "@/models/quizModel";
 
@@ -12,11 +12,13 @@ export async function POST(req: NextRequest) {
     console.log("creating practice quiz");
     await dbConnect();
     const quizTopic = topic as string;
-    const prompt = `Generate 5 questions on the ${topic}.`;
+    // const prompt = `Generate 5 questions on the ${topic}.`;
 
-    const genQuestions = await structuredLlm.invoke(prompt, {
-      name: "questions",
-    });
+    // const genQuestions = await structuredLlm.invoke(prompt, {
+    //   name: "questions",
+    // });
+
+    const genQuestions = await generateQuestionnaire(quizTopic);
 
     if (!genQuestions) {
       return "No questions found for this topic";

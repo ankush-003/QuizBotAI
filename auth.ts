@@ -42,7 +42,8 @@ export const authConfig: NextAuthConfig = {
       // console.log("jwt callback");
         if (user) {
             token._id = user._id?.toString()
-            token.history = user?.history
+            token.quizHistory = user?.quizHistory
+            token.readingHistory = user?.readingHistory
             token.numQuizes = user?.numQuizes
             token.numWins = user?.numWins
             token.numPractices = user?.numPractices
@@ -55,7 +56,8 @@ export const authConfig: NextAuthConfig = {
         // console.log("session callback");
         if (token) {
             session.user._id = token._id as string | undefined
-            session.user.history = token.history as string | undefined
+            session.user.quizHistory = token.quizHistory as any[] | undefined
+            session.user.readingHistory = token.readingHistory as any[] | undefined
             session.user.numQuizes = token.numQuizes as number | undefined
             session.user.numWins = token.numWins as number | undefined
             session.user.numPractices = token.numPractices as number | undefined

@@ -41,9 +41,10 @@ const userSchema = new mongoose.Schema({
                 type: Date,
                 default: Date.now(),
             },
-        }]
+        }],
+        default: [],
     },
-    history: {
+    quizHistory: {
         type: [{
             quiz: {
                 type: mongoose.Schema.Types.ObjectId,
@@ -55,8 +56,33 @@ const userSchema = new mongoose.Schema({
             createdAt: {
                 type: Date,
             },
-        }]
-    }
+        }],
+        default: [],
+    },
+    readingHistory: {
+        type: [{
+            module: {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: "modules",
+            },
+            numChapters: {
+                type: Number,
+            },
+            completed: {
+                type: Boolean,
+                default: false,
+            },
+            numChaptersRead: {
+                type: Number,
+                default: 0,
+            },
+            readAt: {
+                type: Date,
+                default: Date.now(),
+            },
+        }],
+        default: [],
+    },
 }, { timestamps: true });
 
 const User = mongoose.models?.users || mongoose.model("users", userSchema);

@@ -22,7 +22,7 @@ interface UserParams {
 
 export default function Home() {
   const { data: session, update } = useSession();
-  console.log(session);
+  // console.log(session);
   const userParams: UserParams = {
     numQuizes: session?.user?.numQuizes as number,
     numWins: session?.user?.numWins as number,
@@ -45,13 +45,14 @@ export default function Home() {
           `/api/achievements?userId=${session?.user?._id}`
         );
         const data = await response.json();
+        console.log(data);
         return data;
       },
     }
   );
 
-  console.log(allAchievements);
-  console.log(myAchievements);
+  // console.log(allAchievements);
+  // console.log(myAchievements);
 
   const checkThreshold = (threshold: any, params: UserParams) => {
     if (threshold.numQuizes) {
@@ -108,7 +109,7 @@ export default function Home() {
               <div>Loading...</div>
             ) : (
               <div className="grid lg:grid-cols-3  gap-4">
-                {allAchievements?.map((achievement: any) => (
+                {(allAchievements as any[])?.map((achievement: any) => (
                   <div
                     key={achievement._id}
                     className="bg-gray-100 dark:bg-gray-700 rounded-lg p-4 text-center flex flex-col items-center gap-3"
@@ -136,7 +137,7 @@ export default function Home() {
               <div>Loading...</div>
             ) : (
               <div className="grid lg:grid-cols-3  gap-4">
-                {myAchievements?.map((achievement: any) => (
+                {(myAchievements as any[])?.map((achievement: any) => (
                   <div
                     key={achievement.achievement._id}
                     className="bg-gray-100 dark:bg-gray-700 rounded-lg p-4 text-center flex flex-col items-center gap-3"
