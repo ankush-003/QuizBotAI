@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@auth/mongodb-adapter": "^3.1.0",
+    "@excalidraw/excalidraw": "^0.17.6",
     "@langchain/google-genai": "^0.0.16",
     "@langchain/google-vertexai": "^0.0.17",
     "@langchain/groq": "^0.0.12",

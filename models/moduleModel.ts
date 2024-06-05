@@ -1,6 +1,6 @@
 import { create } from "domain";
 import { read } from "fs";
-import mongoose from "mongoose";
+import mongoose, { Mongoose } from "mongoose";
 import { title } from "process";
 
 const chapterSchema = new mongoose.Schema({
@@ -15,6 +15,12 @@ const chapterSchema = new mongoose.Schema({
     content: {
         type: String,
         required: true,
+    },
+    elements: {
+        type: [{
+            type: mongoose.Schema.Types.Mixed,
+        }],
+        default: [],
     }
 })
 
