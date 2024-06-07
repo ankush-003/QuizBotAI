@@ -4,8 +4,8 @@ import { z } from "zod";
 
 const model = new ChatGroq({
   // model: "gemma-7b-it",
-  // model: "llama3-8b-8192",
-  model: "mixtral-8x7b-32768",
+  model: "llama3-8b-8192",
+  // model: "mixtral-8x7b-32768",
   temperature: 0,
 });
 

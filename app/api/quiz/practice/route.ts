@@ -35,7 +35,6 @@ export async function POST(req: NextRequest) {
       }
     );
     console.log(questions);
-    console.log(prompt); 
     const quiz = await quizes.create({
         questions: questions,
         topic: quizTopic,

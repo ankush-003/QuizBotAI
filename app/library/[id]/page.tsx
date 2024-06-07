@@ -14,15 +14,9 @@ import { useSession } from "next-auth/react";
 import { useState, useEffect } from "react";
 import { toast } from "sonner";
 import {
+  Excalidraw,
   convertToExcalidrawElements,
 } from "@excalidraw/excalidraw";
-import { set } from "mongoose";
-const ExcalidrawBoard = dynamic(
-    async () => (await import("@/components/ExcalidrawBoard")).default,
-    {
-      ssr: false,
-    },
-  );
 
 interface Chapter {
   _id: string;
@@ -50,15 +44,27 @@ export default function Page({ params }: { params: { id: string } }) {
   //   console.log(session);
   const [currentChapter, setCurrentChapter] = useState<Chapter | null>(null);
   const [currentChapterIndex, setCurrentChapterIndex] = useState<number>(0);
-
+  const [excalidrawAPI, setExcalidrawAPI] = useState(null);
   useEffect(() => {
     if (Module) {
       setCurrentChapter((prevChapter: Chapter | null) => {
         const chapter = Module.chapters[currentChapterIndex];
         return chapter;
       });
+      if (!excalidrawAPI) {
+        return;
+      }
+      excalidrawAPI?.updateScene({
+        elements: convertToExcalidrawElements(
+          Module.chapters[currentChapterIndex].elements
+        ),
+        appState: {
+          viewModeEnabled: true,
+        },
+        scrollToContent: true,
+      });
     }
-  }, [Module, currentChapterIndex]);
+  }, [Module, currentChapterIndex, excalidrawAPI]);
 
   return (
     <div>
@@ -75,12 +81,26 @@ export default function Page({ params }: { params: { id: string } }) {
             </CardDescription>
           </CardHeader>
           <CardContent>
-           <div className="flex flex-col items-center justify-center gap-3">
-           <div>
-              <p>{currentChapter?.content}</p>
+            <div className="flex flex-col items-center justify-center gap-3">
+              <div>
+                <p>{currentChapter?.content}</p>
+              </div>
+              <div className="w-full h-[750px]">
+                <Excalidraw
+                  theme="dark"
+                  // initialData={{
+                  //   elements: convertedElements,
+                  //   appState: {
+                  //     //   viewModeEnabled: true,
+                  //   },
+                  //   scrollToContent: true,
+                  // }}
+                  excalidrawAPI={(api) => {
+                    setExcalidrawAPI(api);
+                  }}
+                />
+              </div>
             </div>
-                <ExcalidrawBoard elements={currentChapter?.elements} />
-            </div> 
           </CardContent>
           <CardFooter className="flex items-center justify-between">
             <div className="flex gap-2 items-center justify-around">

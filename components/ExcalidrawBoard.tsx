@@ -3,6 +3,7 @@ import {
   Excalidraw,
   convertToExcalidrawElements,
 } from "@excalidraw/excalidraw";
+import { useState, useEffect } from "react";
 
 export default function ExcalidrawBoard({ elements }: { elements: any[] | undefined }) {
     let convertedElements: any[] = [];
@@ -13,13 +14,13 @@ export default function ExcalidrawBoard({ elements }: { elements: any[] | undefi
     <div className="w-full h-[750px]">
       <Excalidraw
         theme="dark"
-        initialData={{
-          elements: convertedElements,
-          appState: {
-            //   viewModeEnabled: true,
-          },
-          scrollToContent: true,
-        }}
+        // initialData={{
+        //   elements: convertedElements,
+        //   appState: {
+        //     //   viewModeEnabled: true,
+        //   },
+        //   scrollToContent: true,
+        // }}
       />
     </div>
   );
