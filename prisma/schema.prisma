@@ -1,14 +1,93 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "mongodb"
   url      = env("DATABASE_URL")
+}
+
+type ModulesChapters {
+  id       String                    @map("_id") @db.ObjectId
+  content  String
+  elements Json?
+  index    Int
+  title    String
+  completed Boolean @default(false)
+}
+
+type QuizesQuestions {
+  answer   String
+  index    Int
+  options  String[]
+  question String
+}
+
+model leaderBoardEntry {
+  id        String @id @default(auto()) @map("_id") @db.ObjectId
+  quiz        Quiz @relation(fields: [quizId], references: [id])
+  quizId    String @db.ObjectId
+  score     Int  @default(0)
+  user     User @relation(fields: [userId], references: [id])
+  userId    String @db.ObjectId
+}
+
+model Quiz {
+  id              String            @id @default(auto()) @map("_id") @db.ObjectId
+  v               Int               @map("__v")
+  createdAt       DateTime          @db.Date
+  currentQuestion Int
+  /// Could not determine type: the field only had null or empty values in the sample set.
+  leaderBoard     leaderBoardEntry[] 
+  numQuestions    Int
+  questions       QuizesQuestions[]
+  topic           String
+  type            String
+  updatedAt       DateTime          @db.Date
+  /// Could not determine type: the field only had null or empty values in the sample set.
+  winner          Json?
+}
+
+type UsersReadingHistory {
+  id              String   @map("_id") @db.ObjectId
+  /// Could not determine type: the field only had null or empty values in the sample set.
+  chaptersRead    Json?
+  completed       Boolean
+  module          String   @db.ObjectId
+  numChapters     Int
+  numChaptersRead Int
+  readAt          DateTime @db.Date
+}
+
+model achievements {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+}
+
+model modules {
+  id        String            @id @default(auto()) @map("_id") @db.ObjectId
+  v         Int               @map("__v")
+  chapters  ModulesChapters[]
+  createdBy String            @db.ObjectId
+  /// Could not determine type: the field only had null or empty values in the sample set.
+  readBy    Json?
+  topic     String
+}
+
+
+model User {
+  id             String                @id @default(auto()) @map("_id") @db.ObjectId
+  v              Int                   @map("__v")
+  /// Could not determine type: the field only had null or empty values in the sample set.
+  achievements   Json?
+  createdAt      DateTime              @db.Date
+  email          String                @unique(map: "email_1")
+  numPractices   Int
+  numQuizes      Int
+  numWins        Int
+  password       String
+  /// Could not determine type: the field only had null or empty values in the sample set.
+  quizHistory    Json?
+  readingHistory UsersReadingHistory[]
+  updatedAt      DateTime              @db.Date
+  username       String                @unique(map: "username_1")
 }
